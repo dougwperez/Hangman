@@ -7,14 +7,16 @@ var numChar = 0;
 var phrases = ["No big deal", "Oh my God!", "My bad", "In no time", "Pig out"];
 var transportations =["Automobile", "Airplane", "Train", "Motorcyle", "Cargo Ship"];
 var animals = ["Elephant", "Giraffe", "Snake", "Whale", "Gorilla"];
-var familys = ["Mother", "Father", "Cousin", "Grandpa", "Grandma"];
+var familys = ["Mother", "Father", "Cousin", "Grandfather", "Grandmother"];
 var jobs = ["Teacher", "Firefighter", "Developer", "Doctor", "Laywer"];
+var birds = ["Nightjar", "Owl", "Sparrow", "Eagle", "Bluebird"];
 
 
 
 
 var menu = document.getElementById("themes");
 menu.addEventListener("themes", generateData);
+
 
 
 
@@ -30,8 +32,12 @@ function dropdownmenu(){
     family();
     } else if (menu.value == 'job') {
     job();
+} else if (menu.value == 'bird') {
+    bird();
 }
 }
+
+
 
 
 
@@ -41,7 +47,7 @@ function phrase(){
     rand = Math.floor(Math.random()*phrases.length);
     word = phrases[rand];
     document.getElementById('introPage').style.display = "none";
-    document.getElementById('singlePage').style.display = "none";
+    document.getElementById('singlePage').style.display = "block";
     document.getElementById('categoryName').innerHTML = "Phrases";
     hangman();
 }
@@ -81,6 +87,17 @@ function job(){
     document.getElementById('categoryName').innerHTML = "Jobs";
     hangman();
 }
+
+function bird(){
+    rand = Math.floor(Math.random()*birds.length);
+    word = birds[rand];
+    document.getElementById('introPage').style.display = "none";
+    document.getElementById('singlePage').style.display = "none";
+    document.getElementById('categoryName').innerHTML = "Birds";
+    hangman();
+}
+
+
 
 
 
@@ -146,7 +163,7 @@ function draw(){
         ctx.fillStyle = "white";
         ctx.lineWidth=3;
         ctx.fillRect(0, 0, 300, 300);
-        ctx.beginPath(); //vertical bar
+        /*ctx.beginPath(); //vertical bar
             ctx.moveTo(50,270);
             ctx.lineTo(50,25);
             ctx.stroke();
@@ -197,7 +214,7 @@ function draw(){
         ctx.beginPath(); //noose
             ctx.moveTo(150,40);
             ctx.lineTo(150,80);
-            ctx.stroke();
+            ctx.stroke(); 
     var cntx = document.getElementById("homeHangman").getContext('2d');
         cntx.fillStyle = "white";
         cntx.lineWidth=3;
@@ -253,7 +270,7 @@ function draw(){
         cntx.beginPath(); //noose
             cntx.moveTo(150,40);
             cntx.lineTo(150,80);
-            cntx.stroke();
+            cntx.stroke(); */
 }
 
 function splitWords(){
@@ -919,6 +936,10 @@ function reset(){
     else if(jobs.indexOf(word) > -1){
         jobs.splice(rand,1);
         job();
+    }
+    else if(birds.indexOf(word) > -1){
+        birds.splice(rand,1);
+        bird();
     }
     else if(document.getElementById('charcount').innerHTML > 0){
         document.getElementById('gamePage').style.display = "none";
